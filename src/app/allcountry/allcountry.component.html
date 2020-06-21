@@ -1,0 +1,30 @@
+<div class="country-container">
+    <h1>
+        Countries
+    </h1>
+    <!-- <div class="search-bar-container"> -->
+    <input type="text" name="search bar" [disabled]="!(countryListData?.length)" [(ngModel)]="searchTerm"
+        class="search-bar-container" placeholder="Search countries" />
+    <!-- </div> -->
+    <ul>
+        <li *ngFor="let countryObj of filteredCountries">
+            <div class="country-flag">
+                <img src="{{countryObj?.flag}}" alt="flag">
+            </div>
+            <div class="country-info">
+                <h5>{{countryObj?.name}}</h5>
+                <span>Currency: {{countryObj?.currencies[0]?.name}}</span> <br>
+                <span>Country date and Time : {{printDate(countryObj?.timezones[0])}}</span> <br>
+                <div class="buttons">
+                    <button type="button" [disabled]="true" class="showmap">Showmap</button>
+                    <button (click)="redirectToCountryDetailInfo(countryObj)" class="details">Details</button>
+                </div>
+            </div>
+        </li>
+        <mat-spinner *ngIf="showSpinner"></mat-spinner>
+        <div *ngIf="!(countryListData?.length) && !showSpinner">No data available</div>
+        <div *ngIf="!(filteredCountries?.length) && (countryListData?.length) && !showSpinner">No Search result
+            found</div>
+    </ul>
+
+</div>

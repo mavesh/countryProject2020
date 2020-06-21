@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="country-info clearfix">
+        <div>
+            <button type="button" (click)="redirectToAllCountryPage()" class="back">Back</button>
+        </div>
+    <div class="info">
+        <h1>{{selectedCountry?.name}}</h1>
+        <img src="{{selectedCountry?.flag}}" alt="flag" class="select-country">
+    </div>
+    <div class="country-det info">
+        <span>
+            Native Name: {{selectedCountry?.nativeName}}
+        </span>
+        <span>
+            Capital: {{selectedCountry?.capital}}
+        </span>
+        <span>
+            Population: {{selectedCountry?.population}}
+        </span>
+        <span>
+            Region: {{selectedCountry?.region}}
+        </span>
+        <span>
+            Sub-region: {{selectedCountry?.subregion}}
+        </span>
+        <span>
+            Area: {{selectedCountry?.area}}
+        </span>
+        <span>
+            CountryCode: {{'+' + selectedCountry?.callingCodes[0]}}
+        </span>
+        <span *ngIf="selectedCountry?.languages?.length">
+            Languages : 
+            <span *ngFor="let lang of selectedCountry?.languages; let index= index;">
+                {{lang?.name}} <span *ngIf="!(index === selectedCountry?.languages?.length-1)">&#44;</span>
+            </span>
+        </span>
+        <span>
+            Currencies: {{selectedCountry?.currencies[0]?.name}}
+        </span>
+        <span>
+            Timezones: {{selectedCountry?.timezones}}
+        </span>
+    </div>
+
+    <div class="neighbour">
+        <h2>Neighbour Countries</h2>
+        <ul *ngIf="neighbourCountriesList?.length">
+            <li *ngFor="let countryObj of neighbourCountriesList;" class="neighbour-country">
+                <img src="{{countryObj?.flag}}" alt="countryObj.name">
+                <span>Country Name: {{countryObj?.name}}</span>
+            </li>
+        </ul>
+        <span *ngIf="!neighbourCountriesList?.length">No neighbour countries found</span>
+    </div>
+</div>
+</div>
